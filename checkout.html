@@ -199,15 +199,17 @@
   <script>
     /* =========================================================
        ANMELDUNG PER RECHNUNG
-       Jede Anmeldung wird über Web3Forms als E-Mail an
-       wr@naviqo.de geschickt. Wolfgang Renner stellt danach die
-       Rechnung. Den Zugangsschlüssel gibt es kostenlos auf
-       https://web3forms.com (mit wr@naviqo.de anfordern).
-       Solange ACCESS_KEY leer ist, läuft das Formular im
-       Demo-Modus und es wird nichts verschickt.
+       Jede Anmeldung wird über Web3Forms als E-Mail verschickt:
+       - wr@naviqo.de    (Wolfgang Renner, stellt die Rechnung)
+       - savask@zeoai.de (Savas Kozluklu, zur Info)
+       Pro Adresse gibt es kostenlos einen Zugangsschlüssel auf
+       https://web3forms.com. Solange der Schlüssel für
+       wr@naviqo.de leer ist, läuft das Formular im Demo-Modus
+       und es wird nichts verschickt.
        ========================================================= */
     const BOOKING = {
-      accessKey: '',
+      accessKey: '',      // wr@naviqo.de (Pflicht)
+      accessKeyCopy: '',  // savask@zeoai.de (Kopie)
       endpoint: 'https://api.web3forms.com/submit',
       vatRate: 0.19,
       successUrl: 'danke.html'
@@ -283,7 +285,6 @@
       const net = t.qty * t.unit;
       const vat = Math.round(net * BOOKING.vatRate * 100) / 100;
       const payload = {
-        access_key: BOOKING.accessKey,
         subject: 'Neue Anmeldung KI-Unternehmertag: ' + data.firstName + ' ' + data.lastName + ' (' + t.label + ')',
         from_name: 'KI-Unternehmertag Anmeldung',
         replyto: data.email,
@@ -308,13 +309,17 @@
       btn.disabled = true;
       btn.textContent = 'Wird gesendet …';
       try {
-        const res = await fetch(BOOKING.endpoint, {
+        const send = accessKey => fetch(BOOKING.endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({ access_key: accessKey, ...payload })
+        }).then(async res => {
+          const json = await res.json().catch(() => ({}));
+          if (!res.ok || json.success === false) throw new Error(json.message || res.status);
         });
-        const json = await res.json().catch(() => ({}));
-        if (!res.ok || json.success === false) throw new Error(json.message || res.status);
+        // Kopie an Savas: Fehler dort blockieren die Anmeldung nicht
+        const copy = BOOKING.accessKeyCopy ? send(BOOKING.accessKeyCopy).catch(() => {}) : Promise.resolve();
+        await Promise.all([send(BOOKING.accessKey), copy]);
         location.href = BOOKING.successUrl + '?ticket=' + key;
       } catch (_) {
         btn.disabled = false;
