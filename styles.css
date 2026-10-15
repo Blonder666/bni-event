@@ -1,3 +1,7 @@
+/* Schriften lokal eingebunden (keine Verbindung zu Google) */
+@font-face { font-family: "Inter"; font-style: normal; font-display: swap; font-weight: 100 900; src: url("assets/fonts/inter-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Oswald"; font-style: normal; font-display: swap; font-weight: 200 700; src: url("assets/fonts/oswald-latin-wght-normal.woff2") format("woff2"); }
+
 :root {
   --red: #cf2030;
   --red-dark: #a8141f;
