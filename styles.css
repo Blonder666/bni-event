@@ -221,3 +221,6 @@ section { padding: 88px 0; }
   .sticky-cta { padding: 6px; }
   .footer a { margin: 0 14px 0 0; }
 }
+
+/* Bindestrich-Wörter nicht am Bindestrich umbrechen */
+.nw { white-space: nowrap; }

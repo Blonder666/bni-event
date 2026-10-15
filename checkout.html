@@ -65,7 +65,7 @@
     <div class="container">
       <a class="brand" href="index.html">
         <img src="assets/bni-logo.png" alt="Unternehmen bei BNI">
-        <span class="hosts">Savas Kozluklu &amp; Wolfgang Renner<small>KI-Unternehmertag</small></span>
+        <span class="hosts">Savas Kozluklu &amp; Wolfgang Renner<small><span class="nw">KI-Unternehmertag</span></small></span>
       </a>
       <a class="btn btn-ghost" href="index.html" style="padding:10px 18px;font-size:.92rem">← Zurück</a>
     </div>
@@ -75,7 +75,7 @@
     <div class="container">
       <span class="eyebrow">Checkout</span>
       <h1 style="font-size:clamp(1.8rem,4vw,2.6rem)">Sichere Dir Deinen Platz</h1>
-      <p class="lead" style="margin-bottom:32px">KI-Unternehmertag · Dienstag, 17.11.2026 · 9:00–18:00 Uhr</p>
+      <p class="lead" style="margin-bottom:32px"><span class="nw">KI-Unternehmertag</span> · Dienstag, 17.11.2026 · 9:00–17:00 Uhr</p>
 
       <form id="checkout" class="co-grid" novalidate>
         <div>
@@ -85,7 +85,7 @@
             <label class="ticket-opt">
               <input type="radio" name="ticket" value="single" checked>
               <span class="t-body">
-                <strong>BNI-Mitglied</strong>
+                <strong><span class="nw">BNI-Mitglied</span></strong>
                 <small>1 Teilnehmer · Du nimmst allein teil</small>
               </span>
               <span class="t-price">249 €</span>
@@ -93,8 +93,8 @@
             <label class="ticket-opt">
               <input type="radio" name="ticket" value="duo">
               <span class="t-body">
-                <strong>Duo: BNI-Mitglied + Unternehmer-Gast</strong>
-                <small>2 Teilnehmer · je 199 € · Gast ist Unternehmer und kein BNI-Mitglied</small>
+                <strong>Duo: <span class="nw">BNI-Mitglied</span> + <span class="nw">Unternehmer-Gast</span></strong>
+                <small>2 Teilnehmer · je 199 € · Gast ist Unternehmer und kein <span class="nw">BNI-Mitglied</span></small>
               </span>
               <span class="t-price">2 × 199 €</span>
             </label>
@@ -106,24 +106,24 @@
             <div class="fields">
               <label class="f">Vorname*<input name="firstName" required autocomplete="given-name"></label>
               <label class="f">Nachname*<input name="lastName" required autocomplete="family-name"></label>
-              <label class="f">E-Mail*<input name="email" type="email" required autocomplete="email"></label>
+              <label class="f"><span class="nw">E-Mail</span>*<input name="email" type="email" required autocomplete="email"></label>
               <label class="f">Telefon<input name="phone" type="tel" autocomplete="tel"></label>
               <label class="f">Unternehmen*<input name="company" required autocomplete="organization"></label>
               <label class="f">Branche*
                 <select name="industry" required class="industry"></select>
               </label>
-              <label class="f full">BNI-Chapter*<input name="chapter" required placeholder="z. B. Chapter Musterstadt"></label>
+              <label class="f full"><span class="nw">BNI-Chapter</span>*<input name="chapter" required placeholder="z. B. Chapter Musterstadt"></label>
             </div>
             <p class="hint">Deine Branche hilft uns, Beispiele und Inhalte auf die Teilnehmenden abzustimmen.</p>
           </div>
 
           <!-- 3 Gast -->
           <div class="co-box guest" id="guestBox">
-            <h2><span class="num">3</span> Dein Unternehmer-Gast</h2>
+            <h2><span class="num">3</span> Dein <span class="nw">Unternehmer-Gast</span></h2>
             <div class="fields">
               <label class="f">Vorname*<input name="guestFirstName" data-guest></label>
               <label class="f">Nachname*<input name="guestLastName" data-guest></label>
-              <label class="f">E-Mail*<input name="guestEmail" type="email" data-guest></label>
+              <label class="f"><span class="nw">E-Mail</span>*<input name="guestEmail" type="email" data-guest></label>
               <label class="f">Unternehmen*<input name="guestCompany" data-guest></label>
               <label class="f full">Branche*
                 <select name="guestIndustry" class="industry" data-guest></select>
@@ -131,7 +131,7 @@
             </div>
             <label class="consent" style="margin-top:16px">
               <input type="checkbox" name="guestConfirm" data-guest>
-              <span>Ich bestätige, dass mein Gast selbst Unternehmer ist und aktuell kein BNI-Mitglied.</span>
+              <span>Ich bestätige, dass mein Gast selbst Unternehmer ist und aktuell kein <span class="nw">BNI-Mitglied</span>.</span>
             </label>
           </div>
 
@@ -142,9 +142,9 @@
               <label class="f full">Straße &amp; Hausnummer*<input name="street" required autocomplete="street-address"></label>
               <label class="f">PLZ*<input name="zip" required autocomplete="postal-code" inputmode="numeric"></label>
               <label class="f">Ort*<input name="city" required autocomplete="address-level2"></label>
-              <label class="f full">USt-IdNr. (optional)<input name="vatId"></label>
+              <label class="f full"><span class="nw">USt-IdNr</span>. (optional)<input name="vatId"></label>
             </div>
-            <p class="hint">Beim Duo-Ticket stellen wir eine gemeinsame Rechnung an diese Adresse aus.</p>
+            <p class="hint">Beim <span class="nw">Duo-Ticket</span> stellen wir eine gemeinsame Rechnung an diese Adresse aus.</p>
           </div>
         </div>
 
@@ -154,15 +154,15 @@
             <div class="mini-hosts">
               <img src="assets/savas-kozluklu.png" alt="">
               <img src="assets/wolfgang-renner.png" alt="">
-              <span>KI-Unternehmertag<br><small style="font-weight:500;color:var(--muted)">mit Savas Kozluklu &amp; Wolfgang Renner</small></span>
+              <span><span class="nw">KI-Unternehmertag</span><br><small style="font-weight:500;color:var(--muted)">mit Savas Kozluklu &amp; Wolfgang Renner</small></span>
             </div>
             <ul class="event-meta">
-              <li>📅 Di., 17.11.2026 · 9:00–18:00 Uhr</li>
+              <li>📅 Di., 17.11.2026 · 9:00–17:00 Uhr</li>
               <li>📍 Augsburg</li>
               <li>🤝 Networking &amp; 121s</li>
             </ul>
 
-            <div class="sum-row"><span id="sumLabel">1 × BNI-Mitglied</span><span id="sumNet">249,00 €</span></div>
+            <div class="sum-row"><span id="sumLabel">1 × <span class="nw">BNI-Mitglied</span></span><span id="sumNet">249,00 €</span></div>
             <div class="sum-row"><span>zzgl. 19 % USt.</span><span id="sumVat">47,31 €</span></div>
             <div class="sum-row total"><span>Gesamt</span><span id="sumGross">296,31 €</span></div>
 
@@ -175,10 +175,9 @@
 
             <button type="submit" class="btn btn-block" id="payBtn">Zahlungspflichtig buchen →</button>
             <p class="err" id="err">Bitte fülle alle Pflichtfelder (*) aus.</p>
-            <div class="demo-note" id="demoNote">Demo-Modus: Es ist noch kein Zahlungsanbieter verbunden. Es wird keine Zahlung ausgelöst.</div>
+            <div class="demo-note" id="demoNote"><span class="nw">Demo-Modus</span>: Es ist noch kein Zahlungsanbieter verbunden. Es wird keine Zahlung ausgelöst.</div>
 
             <div class="trust">
-              <span>✓ Mittagspausen-Garantie – Geld zurück bis zur Mittagspause</span>
               <span>✓ Ordentliche Rechnung mit ausgewiesener USt.</span>
               <span>✓ Sichere Zahlung über unseren Zahlungsanbieter</span>
             </div>
