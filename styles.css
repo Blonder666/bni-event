@@ -225,3 +225,16 @@ section { padding: 88px 0; }
 /* Bindestrich-Wörter nicht am Bindestrich umbrechen */
 .nw { white-space: nowrap; }
 .agenda-note { font-size: .88rem; color: var(--muted); margin: 14px 4px 0; }
+
+/* Rechtstexte (Impressum, Datenschutz) */
+.legal { padding-top: 8px; }
+.legal h1 { font-size: clamp(2rem, 4.5vw, 2.8rem); margin-bottom: 24px; }
+.legal h2 { font-size: 1.4rem; margin: 36px 0 12px; }
+.legal h3 { font-size: 1.1rem; margin: 26px 0 8px; }
+.legal h4 { font-size: 1rem; margin: 18px 0 6px; }
+.legal p, .legal li { color: var(--ink-2); line-height: 1.65; overflow-wrap: anywhere; }
+.legal ul { padding-left: 20px; }
+.legal a { color: var(--red); }
+.legal .legal-addr { gap: 24px; margin: 8px 0 16px; }
+.legal .legal-addr h2 { margin-top: 8px; }
+.legal .legal-src { font-size: .85rem; color: var(--muted); margin-top: 28px; }
