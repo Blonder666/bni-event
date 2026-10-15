@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ticket sichern · KI-Unternehmertag 17.11.2026</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background: var(--bg-soft); }
+    .co-wrap { padding: 48px 0 80px; }
+    .co-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start; }
+    .co-box { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 30px; margin-bottom: 22px; }
+    .co-box h2 { font-size: 1.3rem; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+    .co-box h2 .num { width: 30px; height: 30px; font-size: .9rem; margin: 0; }
+    .ticket-opt { display: flex; gap: 14px; align-items: flex-start; border: 2px solid var(--line); border-radius: 14px; padding: 18px; cursor: pointer; margin-bottom: 12px; transition: border-color .15s; }
+    .ticket-opt:has(input:checked) { border-color: var(--red); background: #fffafa; }
+    .ticket-opt input { accent-color: var(--red); width: 20px; height: 20px; margin-top: 3px; flex-shrink: 0; }
+    .ticket-opt .t-body { flex: 1; }
+    .ticket-opt strong { display: block; }
+    .ticket-opt small { color: var(--muted); font-size: .9rem; }
+    .ticket-opt .t-price { font-weight: 800; font-size: 1.2rem; white-space: nowrap; }
+    .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .fields .full { grid-column: 1 / -1; }
+    label.f { display: block; font-size: .88rem; font-weight: 600; color: var(--ink-2); }
+    label.f input, label.f select {
+      display: block; width: 100%; margin-top: 6px; padding: 13px 14px; font: inherit; font-size: 1rem;
+      border: 1.5px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink);
+    }
+    label.f input:focus, label.f select:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 3px rgba(207, 32, 48, .12); }
+    .hint { font-size: .85rem; color: var(--muted); margin: 10px 0 0; }
+    .guest { display: none; }
+    .guest.show { display: block; }
+    .consent { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; color: var(--ink-2); margin-bottom: 12px; }
+    .consent input { accent-color: var(--red); width: 18px; height: 18px; margin-top: 3px; flex-shrink: 0; }
+    .summary { position: sticky; top: 96px; }
+    .sum-row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; font-size: .96rem; }
+    .sum-row.total { border-top: 2px solid var(--ink); margin-top: 8px; padding-top: 14px; font-weight: 800; font-size: 1.2rem; }
+    .event-meta { list-style: none; padding: 0; margin: 0 0 18px; font-size: .94rem; color: var(--ink-2); }
+    .event-meta li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+    .mini-hosts { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .mini-hosts img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.12); }
+    .mini-hosts img + img { margin-left: -22px; }
+    .mini-hosts span { font-weight: 700; font-size: .94rem; line-height: 1.3; }
+    .trust { display: grid; gap: 8px; font-size: .88rem; color: var(--ink-2); margin-top: 16px; }
+    .demo-note { display: none; background: #fff7e0; border: 1px solid #f1d98a; color: #6b5310; border-radius: 10px; padding: 12px 14px; font-size: .9rem; margin-top: 14px; }
+    .err { color: var(--red); font-size: .9rem; margin-top: 10px; display: none; }
+    @media (max-width: 920px) {
+      .co-grid { grid-template-columns: 1fr; }
+      .summary { position: static; order: -1; }
+    }
+    @media (max-width: 640px) {
+      .fields { grid-template-columns: 1fr; }
+      .co-box { padding: 22px 18px; }
+      .ticket-opt { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img src="assets/bni-logo.png" alt="Unternehmen bei BNI">
+        <span class="hosts">Savas Kozluklu &amp; Wolfgang Renner<small>KI-Unternehmertag</small></span>
+      </a>
+      <a class="btn btn-ghost" href="index.html" style="padding:10px 18px;font-size:.92rem">← Zurück</a>
+    </div>
+  </header>
+
+  <main class="co-wrap">
+    <div class="container">
+      <span class="eyebrow">Checkout</span>
+      <h1 style="font-size:clamp(1.8rem,4vw,2.6rem)">Sichere Dir Deinen Platz</h1>
+      <p class="lead" style="margin-bottom:32px">KI-Unternehmertag · Dienstag, 17.11.2026 · 9:00–18:00 Uhr</p>
+
+      <form id="checkout" class="co-grid" novalidate>
+        <div>
+          <!-- 1 Ticket -->
+          <div class="co-box">
+            <h2><span class="num">1</span> Ticket wählen</h2>
+            <label class="ticket-opt">
+              <input type="radio" name="ticket" value="single" checked>
+              <span class="t-body">
+                <strong>BNI-Mitglied</strong>
+                <small>1 Teilnehmer · Du nimmst allein teil</small>
+              </span>
+              <span class="t-price">249 €</span>
+            </label>
+            <label class="ticket-opt">
+              <input type="radio" name="ticket" value="duo">
+              <span class="t-body">
+                <strong>Duo: BNI-Mitglied + Unternehmer-Gast</strong>
+                <small>2 Teilnehmer · je 199 € · Gast ist Unternehmer und kein BNI-Mitglied</small>
+              </span>
+              <span class="t-price">2 × 199 €</span>
+            </label>
+          </div>
+
+          <!-- 2 Deine Daten -->
+          <div class="co-box">
+            <h2><span class="num">2</span> Deine Daten</h2>
+            <div class="fields">
+              <label class="f">Vorname*<input name="firstName" required autocomplete="given-name"></label>
+              <label class="f">Nachname*<input name="lastName" required autocomplete="family-name"></label>
+              <label class="f">E-Mail*<input name="email" type="email" required autocomplete="email"></label>
+              <label class="f">Telefon<input name="phone" type="tel" autocomplete="tel"></label>
+              <label class="f">Unternehmen*<input name="company" required autocomplete="organization"></label>
+              <label class="f">Branche*
+                <select name="industry" required class="industry"></select>
+              </label>
+              <label class="f full">BNI-Chapter*<input name="chapter" required placeholder="z. B. Chapter Musterstadt"></label>
+            </div>
+            <p class="hint">Deine Branche nutzen wir, um Branchentische und 121-Gesprächspartner passend zusammenzustellen.</p>
+          </div>
+
+          <!-- 3 Gast -->
+          <div class="co-box guest" id="guestBox">
+            <h2><span class="num">3</span> Dein Unternehmer-Gast</h2>
+            <div class="fields">
+              <label class="f">Vorname*<input name="guestFirstName" data-guest></label>
+              <label class="f">Nachname*<input name="guestLastName" data-guest></label>
+              <label class="f">E-Mail*<input name="guestEmail" type="email" data-guest></label>
+              <label class="f">Unternehmen*<input name="guestCompany" data-guest></label>
+              <label class="f full">Branche*
+                <select name="guestIndustry" class="industry" data-guest></select>
+              </label>
+            </div>
+            <label class="consent" style="margin-top:16px">
+              <input type="checkbox" name="guestConfirm" data-guest>
+              <span>Ich bestätige, dass mein Gast selbst Unternehmer ist und aktuell kein BNI-Mitglied.</span>
+            </label>
+          </div>
+
+          <!-- 4 Rechnung -->
+          <div class="co-box">
+            <h2><span class="num" id="billNum">3</span> Rechnungsadresse</h2>
+            <div class="fields">
+              <label class="f full">Straße &amp; Hausnummer*<input name="street" required autocomplete="street-address"></label>
+              <label class="f">PLZ*<input name="zip" required autocomplete="postal-code" inputmode="numeric"></label>
+              <label class="f">Ort*<input name="city" required autocomplete="address-level2"></label>
+              <label class="f full">USt-IdNr. (optional)<input name="vatId"></label>
+            </div>
+            <p class="hint">Beim Duo-Ticket stellen wir eine gemeinsame Rechnung an diese Adresse aus.</p>
+          </div>
+        </div>
+
+        <!-- Zusammenfassung -->
+        <aside class="summary">
+          <div class="co-box">
+            <div class="mini-hosts">
+              <img src="assets/savas-kozluklu.png" alt="">
+              <img src="assets/wolfgang-renner.png" alt="">
+              <span>KI-Unternehmertag<br><small style="font-weight:500;color:var(--muted)">mit Savas Kozluklu &amp; Wolfgang Renner</small></span>
+            </div>
+            <ul class="event-meta">
+              <li>📅 Di., 17.11.2026 · 9:00–18:00 Uhr</li>
+              <li>📍 Hotel Mustermann, Musterweg 4711, 12345 Musterstadt</li>
+              <li>🤝 Networking &amp; 121s nach Branchen</li>
+            </ul>
+
+            <div class="sum-row"><span id="sumLabel">1 × BNI-Mitglied</span><span id="sumNet">249,00 €</span></div>
+            <div class="sum-row"><span>zzgl. 19 % USt.</span><span id="sumVat">47,31 €</span></div>
+            <div class="sum-row total"><span>Gesamt</span><span id="sumGross">296,31 €</span></div>
+
+            <div style="margin-top:20px">
+              <label class="consent">
+                <input type="checkbox" name="terms" required>
+                <span>Ich akzeptiere die <a href="#" target="_blank">AGB</a> und habe die <a href="#" target="_blank">Datenschutzerklärung</a> gelesen.*</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-block" id="payBtn">Zahlungspflichtig buchen →</button>
+            <p class="err" id="err">Bitte fülle alle Pflichtfelder (*) aus.</p>
+            <div class="demo-note" id="demoNote">Demo-Modus: Es ist noch kein Zahlungsanbieter verbunden. Es wird keine Zahlung ausgelöst.</div>
+
+            <div class="trust">
+              <span>✓ Mittagspausen-Garantie – Geld zurück bis zur Mittagspause</span>
+              <span>✓ Ordentliche Rechnung mit ausgewiesener USt.</span>
+              <span>✓ Sichere Zahlung über unseren Zahlungsanbieter</span>
+            </div>
+          </div>
+        </aside>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© 2026 Savas Kozluklu &amp; Wolfgang Renner</span>
+      <nav>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       ZAHLUNGSANBIETER – hier später anbinden
+       provider: 'demo' | 'stripe' | 'digistore'
+       ---------------------------------------------------------
+       Stripe:    Zwei Payment Links anlegen (Einzel 249 €, Duo 2×199 €)
+                  und unten eintragen. E-Mail wird vorausgefüllt.
+                  Für Rechnungs-/Teilnehmerdaten: Stripe Checkout Session
+                  über ein kleines Backend (metadata) empfohlen.
+       Digistore: Zwei Produkte anlegen und die Bestell-URLs
+                  (https://www.digistore24.com/product/XXXXX) eintragen.
+       ========================================================= */
+    const PAYMENT = {
+      provider: 'demo',
+      vatRate: 0.19,
+      stripe: {
+        single: 'https://buy.stripe.com/DEIN_LINK_EINZEL',
+        duo:    'https://buy.stripe.com/DEIN_LINK_DUO'
+      },
+      digistore: {
+        single: 'https://www.digistore24.com/product/PRODUKT_ID_EINZEL',
+        duo:    'https://www.digistore24.com/product/PRODUKT_ID_DUO'
+      },
+      successUrl: 'danke.html'
+    };
+
+    const TICKETS = {
+      single: { label: '1 × BNI-Mitglied', qty: 1, unit: 249 },
+      duo:    { label: '2 × Duo-Ticket (je 199 €)', qty: 2, unit: 199 }
+    };
+
+    const INDUSTRIES = [
+      'Bitte wählen', 'Handwerk & Bau', 'Immobilien', 'Finanzen & Versicherungen', 'Steuern & Recht',
+      'Gesundheit & Medizin', 'Fitness & Wellness', 'IT & Software', 'Marketing, Werbung & Medien',
+      'Beratung & Coaching', 'Handel & E-Commerce', 'Gastronomie & Hotellerie', 'Produktion & Industrie',
+      'Logistik & Mobilität', 'Sachverständige & Gutachter', 'Sonstige Dienstleistungen'
+    ];
+
+    const form = document.getElementById('checkout');
+    const eur = n => n.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+
+    document.querySelectorAll('select.industry').forEach(sel => {
+      INDUSTRIES.forEach((name, i) => sel.add(new Option(name, i === 0 ? '' : name)));
+    });
+
+    function currentTicket() { return form.ticket.value; }
+
+    function update() {
+      const key = currentTicket();
+      const t = TICKETS[key];
+      const net = t.qty * t.unit;
+      const vat = Math.round(net * PAYMENT.vatRate * 100) / 100;
+      document.getElementById('sumLabel').textContent = t.label;
+      document.getElementById('sumNet').textContent = eur(net);
+      document.getElementById('sumVat').textContent = eur(vat);
+      document.getElementById('sumGross').textContent = eur(net + vat);
+
+      const isDuo = key === 'duo';
+      document.getElementById('guestBox').classList.toggle('show', isDuo);
+      document.getElementById('billNum').textContent = isDuo ? '4' : '3';
+      document.querySelectorAll('[data-guest]').forEach(el => el.required = isDuo);
+    }
+
+    // Vorauswahl über ?ticket=duo / ?ticket=single
+    const preset = new URLSearchParams(location.search).get('ticket');
+    if (preset && TICKETS[preset]) form.ticket.value = preset;
+    form.addEventListener('change', e => { if (e.target.name === 'ticket') update(); });
+    update();
+
+    if (PAYMENT.provider === 'demo') document.getElementById('demoNote').style.display = 'block';
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const err = document.getElementById('err');
+      if (!form.checkValidity()) {
+        err.style.display = 'block';
+        form.reportValidity();
+        return;
+      }
+      err.style.display = 'none';
+
+      const key = currentTicket();
+      const data = Object.fromEntries(new FormData(form));
+      // Buchungsdaten lokal für die Danke-Seite merken (nur in diesem Browser)
+      try { sessionStorage.setItem('bni-ki-order', JSON.stringify({ ticket: key, firstName: data.firstName })); } catch (_) {}
+
+      if (PAYMENT.provider === 'stripe') {
+        const url = new URL(PAYMENT.stripe[key]);
+        url.searchParams.set('prefilled_email', data.email);
+        location.href = url.toString();
+      } else if (PAYMENT.provider === 'digistore') {
+        location.href = PAYMENT.digistore[key];
+      } else {
+        location.href = PAYMENT.successUrl + '?ticket=' + key;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Danke für Deine Anmeldung · KI-Unternehmertag</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img src="assets/bni-logo.png" alt="Unternehmen bei BNI">
+        <span class="hosts">Savas Kozluklu &amp; Wolfgang Renner<small>KI-Unternehmertag</small></span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container narrow center">
+        <div class="num" style="width:64px;height:64px;font-size:1.8rem;margin:0 auto 20px">✓</div>
+        <h1 style="font-size:clamp(2rem,4.5vw,3rem)" id="title">Du bist dabei!</h1>
+        <p class="lead" id="msg">Danke für Deine Anmeldung zum KI-Unternehmertag. Die Bestätigung und Deine Rechnung kommen in wenigen Minuten per E-Mail.</p>
+        <div class="card" style="text-align:left;margin:32px 0">
+          <h3>So geht es weiter</h3>
+          <ul class="check">
+            <li>Trag Dir <strong>Dienstag, 17.11.2026, 9:00–18:00 Uhr</strong> in den Kalender ein.</li>
+            <li>Veranstaltungsort: <strong>Hotel Mustermann, Musterweg 4711, 12345 Musterstadt</strong>.</li>
+            <li>Kurz vor dem Event erhältst Du Deinen Branchentisch und Deine 121-Gesprächspartner.</li>
+            <li>Überleg Dir schon jetzt: Welche drei Aufgaben kosten Dich jede Woche die meiste Zeit?</li>
+          </ul>
+        </div>
+        <a class="btn btn-ghost" href="index.html">Zurück zur Eventseite</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© 2026 Savas Kozluklu &amp; Wolfgang Renner</span>
+      <nav><a href="#">Impressum</a><a href="#">Datenschutz</a></nav>
+    </div>
+  </footer>
+
+  <script>
+    try {
+      const o = JSON.parse(sessionStorage.getItem('bni-ki-order') || 'null');
+      if (o && o.firstName) document.getElementById('title').textContent = o.firstName + ', Du bist dabei!';
+      if (o && o.ticket === 'duo') document.getElementById('msg').textContent =
+        'Danke für Eure Anmeldung zum KI-Unternehmertag. Du und Dein Gast erhaltet die Bestätigung in wenigen Minuten per E-Mail, die Rechnung geht an Dich.';
+    } catch (_) {}
+  </script>
+</body>
+</html>
