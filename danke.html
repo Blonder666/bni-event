@@ -23,16 +23,17 @@
       <div class="container narrow center">
         <div class="num" style="width:64px;height:64px;font-size:1.8rem;margin:0 auto 20px">✓</div>
         <h1 style="font-size:clamp(2rem,4.5vw,3rem)" id="title">Du bist dabei!</h1>
-        <p class="lead" id="msg">Danke für Deine Anmeldung zum <span class="nw">KI-Unternehmertag</span>. Wir melden uns in Kürze mit Deiner Bestätigung und der Rechnung per <span class="nw">E-Mail</span>.</p>
+        <p class="lead" id="msg">Danke für Deine Anmeldung zum <span class="nw">KI-Unternehmertag</span>. Wir freuen uns auf Dich in Augsburg.</p>
         <div class="card" style="text-align:left;margin:32px 0">
-          <h3>So geht es weiter</h3>
+          <h3>Was sind die nächsten Schritte?</h3>
           <ul class="check">
-            <li><strong>Zahlung per Rechnung:</strong> Bitte überweise den Betrag innerhalb der auf der Rechnung genannten Frist.</li>
-            <li>Trag Dir <strong>Dienstag, 17.11.2026, 9:00–17:00&nbsp;Uhr</strong> in den Kalender ein.</li>
-            <li>Veranstaltungsort: <strong>Pröllstr.&nbsp;14, 86157&nbsp;Augsburg</strong></li>
-            <li>Kurz vor dem Event erhältst Du alle Infos zu Ablauf, Networking und 121s.</li>
-            <li>Überleg Dir schon jetzt: Welche drei Aufgaben kosten Dich jede Woche die meiste Zeit?</li>
+            <li><strong>Bestätigung:</strong> Du erhältst eine <span class="nw">E-Mail</span> mit allen Infos zu Deiner Anmeldung.</li>
+            <li><strong>Deine Rechnung:</strong> In den nächsten Tagen kommt Deine Rechnung per <span class="nw">E-Mail</span>. Bitte überweise den Betrag vor der Veranstaltung.</li>
+            <li><strong>Dein Workbook:</strong> Kurz vor dem Event schicken wir Dir das Workbook per <span class="nw">E-Mail</span>.</li>
+            <li><strong>Bitte mitbringen:</strong> Visitenkarten für Networking und 121s – und gern Laptop oder Tablet, wenn Du das Workbook digital ausfüllen möchtest.</li>
+            <li><strong>Kleine Vorbereitung:</strong> Welche wiederkehrende Aufgabe kostet Dich die meiste Zeit? Das ist der beste Startpunkt für Deinen EINEN Engpass.</li>
           </ul>
+          <p style="margin:16px 0 0"><strong>Wann &amp; wo:</strong> Dienstag, 17.11.2026, 9:00–17:00&nbsp;Uhr · Pröllstr.&nbsp;14, 86157&nbsp;Augsburg</p>
         </div>
         <a class="btn btn-ghost" href="index.html">Zurück zur Eventseite</a>
       </div>
@@ -51,7 +52,7 @@
       const o = JSON.parse(sessionStorage.getItem('bni-ki-order') || 'null');
       if (o && o.firstName) document.getElementById('title').textContent = o.firstName + ', Du bist dabei!';
       if (o && o.ticket === 'duo') document.getElementById('msg').textContent =
-        'Danke für Eure Anmeldung zum KI-Unternehmertag. Wir melden uns in Kürze mit der Bestätigung für Dich und Deinen Gast. Die Rechnung für beide Tickets geht per E-Mail an Dich.';
+        'Danke für Eure Anmeldung zum KI-Unternehmertag. Die Bestätigung und die Rechnung für beide Tickets gehen per E-Mail an Dich – bitte leite die Infos an Deinen Gast weiter.';
     } catch (_) {}
   </script>
 </body>

@@ -287,6 +287,7 @@
       const payload = {
         subject: 'Neue Anmeldung KI-Unternehmertag: ' + data.firstName + ' ' + data.lastName + ' (' + t.label + ')',
         from_name: 'KI-Unternehmertag Anmeldung',
+        email: data.email,       // Web3Forms schickt die Bestätigung an dieses Feld
         replyto: data.email,
         botcheck: data.botcheck || '',
         Ticket: t.label,
@@ -295,7 +296,7 @@
         Gesamt: eur(net + vat)
       };
       const LABELS = {
-        firstName: 'Vorname', lastName: 'Nachname', email: 'E-Mail', phone: 'Telefon', company: 'Firma',
+        firstName: 'Vorname', lastName: 'Nachname', phone: 'Telefon', company: 'Firma',
         industry: 'Branche', chapter: 'BNI-Chapter', street: 'Straße', zip: 'PLZ', city: 'Ort', vatId: 'USt-IdNr.',
         guestFirstName: 'Gast Vorname', guestLastName: 'Gast Nachname', guestEmail: 'Gast E-Mail',
         guestCompany: 'Gast Firma', guestIndustry: 'Gast Branche'
