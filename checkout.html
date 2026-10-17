@@ -211,6 +211,8 @@
       accessKey: 'bd3c51d5-fd00-434f-8e8f-ddd242a8e4c2',      // wr@naviqo.de (Pflicht)
       accessKeyCopy: '792a6750-31fa-42c7-a27d-f14a307fe8d3',  // savask@zeoai.de (Kopie)
       endpoint: 'https://api.web3forms.com/submit',
+      // Google-Tabelle mit allen Anmeldungen (Apps-Script-Web-App, Konto savask@zeoai.de)
+      sheetUrl: '',
       vatRate: 0.19,
       successUrl: 'danke.html'
     };
@@ -318,6 +320,13 @@
           const json = await res.json().catch(() => ({}));
           if (!res.ok || json.success === false) throw new Error(json.message || res.status);
         });
+        // Zeile in der Google-Tabelle: läuft nebenher und blockiert die Anmeldung nie
+        if (BOOKING.sheetUrl) {
+          const row = { form: 'ki-unternehmertag', 'E-Mail': data.email };
+          for (const [k, v] of Object.entries(payload)) if (!['email', 'replyto', 'botcheck', 'subject', 'from_name'].includes(k)) row[k] = v;
+          fetch(BOOKING.sheetUrl, { method: 'POST', mode: 'no-cors', keepalive: true,
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(row) }).catch(() => {});
+        }
         // Kopie an Savas: Fehler dort blockieren die Anmeldung nicht
         const copy = BOOKING.accessKeyCopy ? send(BOOKING.accessKeyCopy).catch(() => {}) : Promise.resolve();
         await Promise.all([send(BOOKING.accessKey), copy]);
